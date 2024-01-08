@@ -1,13 +1,23 @@
-import "./App.css";
+import React, { useState } from "react";
+import axios from "axios";
 import Form from "./components/Form";
+import LandingText from "./components/LandingText";
 
-function QueryApi() {
-  const fetchGame = async () => {
-    const response = await fetch(`/api/games?q=${query}`);
-    const data = await response.json();
-  };
-}
 function App() {
+  /* const [gameInfo, setGameInfo] = useState(null);
+
+  const fetchGame = async (query) => {
+    try {
+      const response = await axios.get(
+        `https://opentdb.com/api.php?amount=10&category=15&difficulty=medium&type=boolean`
+      );
+      setGameInfo(response.data);
+    } catch (error) {
+      console.error("Error fetching game:", error);
+      setGameInfo(null);
+    }
+  }; */
+
   return (
     <>
       <Form />
