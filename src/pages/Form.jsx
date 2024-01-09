@@ -20,7 +20,9 @@ const Form = () => {
       const response = await axios.get(url);
       const newQuestions = response.data.results;
       console.log("New Questions:", newQuestions);
-      navigate("/questions", { state: { questions: newQuestions } });
+      navigate("/questions", {
+        state: { questions: newQuestions },
+      });
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
