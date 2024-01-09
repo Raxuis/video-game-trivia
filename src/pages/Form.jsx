@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const Form = () => {
   const [amount, setAmount] = React.useState(5);
   const [difficulty, setDifficulty] = React.useState("");
-  const [questions, setQuestions] = React.useState([]);
   const navigate = useNavigate();
 
   const handleChange = (setStateFunc, value) => {
@@ -20,8 +19,8 @@ const Form = () => {
     try {
       const response = await axios.get(url);
       const newQuestions = response.data.results;
-      setQuestions(newQuestions);
-      navigate("/questions");
+      console.log("New Questions:", newQuestions);
+      navigate("/questions", { state: { questions: newQuestions } });
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
