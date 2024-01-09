@@ -31,12 +31,12 @@ const Questions = () => {
   return (
     <>
       {" "}
-      <div className="flex flex-col items-center justify-center py-5 sm:px-6">
+      <div className="flex flex-col items-center justify-center m-5 sm:px-6">
         <h1 className="text-6xl font-bold">Welcome to the Trivia Game!</h1>
         <Return />
       </div>
       <form
-        className="flex flex-col items-center justify-center py-5 sm:px-6"
+        className="flex flex-col items-center justify-center py-5 mx-5"
         onSubmit={submitButton}
       >
         <h1 className="text-4xl font-bold">Questions :</h1>

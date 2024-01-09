@@ -33,12 +33,12 @@ const Answers = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center py-5 sm:px-6 flex-wrap">
+      <div className="flex flex-col items-center justify-center mx-5 py-6 flex-wrap gap-y-2 sm:px-6 ">
         <Return />
         <h2 className="text-3xl font-bold mt-5">
           {percentageCorrect > 50
-            ? "Congratulations! 🎉 You are a master of Trivia!"
-            : "Ah sad! 🤕 It'll be better next time!"}
+            ? "Congratulations! 🎉 You are a master of Trivia! ✅"
+            : "Ah sad! 🤕 It'll be better next time! 👍"}
         </h2>
         <div className="flex flex-col gap-y-5 py-5 sm:px-6">
           <h1 className="text-4xl font-bold">Results :</h1>
@@ -64,9 +64,13 @@ const Answers = () => {
 
           {questions.map((question, index) => {
             return (
-              <p key={index} className="text-blue-600">
-                {index + 1} - {convertEntitiesHTML(question.question)} :{" "}
-                <span className="text-green-500 font-bold">
+              <p
+                key={index}
+                className="text-blue-600 max-lg:w-4/5 pl-8 text-xl"
+              >
+                <span className="font-bold "> {index + 1}</span> -{" "}
+                {convertEntitiesHTML(question.question)} :{" "}
+                <span className="text-green-500 font-bold text-lg">
                   {question.correct_answer}
                 </span>
               </p>
@@ -74,12 +78,27 @@ const Answers = () => {
           })}
           <p className="text-2xl">Your answers were : </p>
           {questions.map((question, index) => {
+            const isCorrect =
+              question.correct_answer.toLowerCase() ===
+              userAnswer[index].toLowerCase();
             return (
-              <p key={index} className="text-blue-600">
-                {index + 1} - {convertEntitiesHTML(question.question)} :{" "}
-                <span className="text-red-500 font-bold">
+              <p
+                key={index}
+                className={`text-blue-600 max-lg:w-4/5 pl-8 text-xl ${
+                  isCorrect ? "text-green-500" : "text-red-500"
+                }`}
+              >
+                <span className="font-bold ">{index + 1}</span> -{" "}
+                {convertEntitiesHTML(question.question)} :{" "}
+                <span className="text-white font-bold text-lg">
                   {userAnswer[index].charAt(0).toUpperCase() +
-                    userAnswer[index].slice(1)}
+                    userAnswer[index].slice(1)}{" "}
+                  :{" "}
+                  {isCorrect ? (
+                    <span className="text-green-500">Correct</span>
+                  ) : (
+                    <span className="text-red-500">Incorrect</span>
+                  )}
                 </span>
               </p>
             );
