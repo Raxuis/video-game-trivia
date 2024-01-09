@@ -1,61 +1,6 @@
+import he from 'he';
+
 function convertEntitiesHTML(text) {
-    const entitiesHTML = {
-        "&quot;": '"',
-        "&apos;": "'",
-        "&amp;": "&",
-        "&gt;": ">",
-        "&lt;": "<",
-        "&nbsp;": " ",
-        "&ndash;": "-",
-        "&#039;": "'",
-        "&#8217;": "'",
-        "&eacute;": "é",
-        "&Eacute;": "É",
-        "&egrave;": "è",
-        "&Egrave;": "È",
-        "&ecirc;": "ê",
-        "&Ecirc;": "Ê",
-        "&euml;": "ë",
-        "&Euml;": "Ë",
-        "&ccedil;": "ç",
-        "&Ccedil;": "Ç",
-        "&aacute;": "á",
-        "&Aacute;": "Á",
-        "&agrave;": "à",
-        "&Agrave;": "À",
-        "&acirc;": "â",
-        "&Acirc;": "Â",
-        "&auml;": "ä",
-        "&Auml;": "Ä",
-        "&aring;": "å",
-        "&Aring;": "Å",
-        "&oacute;": "ó",
-        "&Oacute;": "Ó",
-        "&ograve;": "ò",
-        "&Ograve;": "Ò",
-        "&ocirc;": "ô",
-        "&Ocirc;": "Ô",
-        "&ouml;": "ö",
-        "&Ouml;": "Ö",
-        "&uacute;": "ú",
-        "&Uacute;": "Ú",
-        "&ugrave;": "ù",
-        "&Ugrave;": "Ù",
-        "&ucirc;": "û",
-        "&Ucirc;": "Û",
-        "&uuml;": "ü",
-        "&Uuml;": "Ü",
-        "&szlig;": "ß",
-        "&Oslash;": "Ø",
-        "&oelig;": "œ",
-        "&OElig;": "Œ",
-        "&#039;": "'",
-
-
-    };
-
-    return text.replace(/&[a-zA-Z]+;/g, (entity) => {
-        return entitiesHTML[entity] || entity;
-    });
+    return he.decode(text);
 }
 export default convertEntitiesHTML;
