@@ -12,7 +12,7 @@ const LandingText = () => {
           rel="noopener noreferrer"
           className="text-blue-500 hover:text-blue-300"
         >
-          Raphaël | Raxuis
+          Raphaël | Raxuis 👋
         </a>
       </h1>
     </div>

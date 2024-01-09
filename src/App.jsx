@@ -10,7 +10,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Form />} />
         <Route path="/questions" element={<Questions />} />
-        {/* ... etc. */}
       </Routes>
     </Router>
   );
