@@ -10,7 +10,7 @@ const Form = () => {
   const navigate = useNavigate();
 
   const handleChange = (setStateFunc, value) => {
-    setStateFunc(value || "facile");
+    setStateFunc(value);
   };
 
   const submitButton = async (event) => {
@@ -21,7 +21,6 @@ const Form = () => {
       const response = await axios.get(url);
       const newQuestions = response.data.results;
       setQuestions(newQuestions);
-      console.log(newQuestions);
       navigate("/questions");
     } catch (error) {
       console.error("Error fetching questions:", error);
