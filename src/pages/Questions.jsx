@@ -1,23 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Return from "../components/Return";
-
-function convertEntitiesHTML(texte) {
-  const entitiesHTML = {
-    "&quot;": '"',
-    "&apos;": "'",
-    "&amp;": "&",
-    "&gt;": ">",
-    "&lt;": "<",
-    "&nbsp;": " ",
-    "&ndash;": "-",
-    "&#039;": "'",
-  };
-
-  return texte.replace(/&[a-zA-Z]+;/g, (entity) => {
-    return entitiesHTML[entity] || entity;
-  });
-}
+import convertEntitiesHTML from "../functions/specialChars";
 
 const Questions = () => {
   const location = useLocation();
@@ -30,7 +14,7 @@ const Questions = () => {
     const initialUserAnswer = {};
     if (questions) {
       questions.forEach((question, index) => {
-        initialUserAnswer[index] = ""; // Utilisation de l'index comme clé
+        initialUserAnswer[index] = "";
       });
       setUserAnswer(initialUserAnswer);
     }
@@ -48,9 +32,7 @@ const Questions = () => {
     <>
       {" "}
       <div className="flex flex-col items-center justify-center py-5 sm:px-6">
-        <h1 className="text-6xl font-bold">
-          Bienvenue sur la page des questions.
-        </h1>
+        <h1 className="text-6xl font-bold">Welcome to the Trivia Game!</h1>
         <Return />
       </div>
       <form
@@ -72,9 +54,9 @@ const Questions = () => {
                     />
                   </li>
                   <li className="flex flex-col gap-3">
-                    <label htmlFor={`answer-${index}`}>Réponse :</label>
+                    <label htmlFor={`answer-${index}`}>Response :</label>
                     <div className="flex gap-2">
-                      <label htmlFor={`true-${index}`}>Vrai</label>
+                      <label htmlFor={`true-${index}`}>True</label>
                       <input
                         type="radio"
                         id={`true-${index}`}
@@ -90,7 +72,7 @@ const Questions = () => {
                       />
                     </div>
                     <div className="flex gap-2">
-                      <label htmlFor={`false-${index}`}>Faux</label>
+                      <label htmlFor={`false-${index}`}>False</label>
                       <input
                         type="radio"
                         id={`false-${index}`}
@@ -113,11 +95,11 @@ const Questions = () => {
               type="submit"
               className="block w-40 px-3 py-2 mt-4 text-base font-medium text-white bg-blue-700 rounded-md border border-blue-700 hover:duration-750 hover:bg-blue-800  focus:ring"
             >
-              Soumettre
+              Submit
             </button>
           </>
         ) : (
-          <p>Aucune question disponible.</p>
+          <p>No question available.</p>
         )}
       </form>
     </>
