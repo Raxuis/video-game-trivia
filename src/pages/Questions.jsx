@@ -1,5 +1,6 @@
-import { React, useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Return from "../components/Return";
 
 function convertEntitiesHTML(texte) {
   const entitiesHTML = {
@@ -28,33 +29,35 @@ const Questions = () => {
   useEffect(() => {
     const initialUserAnswer = {};
     if (questions) {
-      questions.forEach((question) => {
-        initialUserAnswer[question.id] = "";
+      questions.forEach((question, index) => {
+        initialUserAnswer[index] = ""; // Utilisation de l'index comme clé
       });
       setUserAnswer(initialUserAnswer);
     }
   }, [questions]);
+
   const submitButton = (e) => {
     e.preventDefault();
-    navigate("/answers", { state: { answers: userAnswer } });
+    e.stopPropagation();
+    navigate("/answers", {
+      state: { answers: userAnswer, questions: questions },
+    });
   };
 
   return (
     <>
+      {" "}
+      <div className="flex flex-col items-center justify-center py-5 sm:px-6">
+        <h1 className="text-6xl font-bold">
+          Bienvenue sur la page des questions.
+        </h1>
+        <Return />
+      </div>
       <form
-        className="flex flex-col items-center justify-center pt-5 sm:px-6"
-        onSubmit={(e) => submitButton(e)}
+        className="flex flex-col items-center justify-center py-5 sm:px-6"
+        onSubmit={submitButton}
       >
-        <h1 className="text-6xl font-bold">Welcome to the Questions Page.</h1>
-        <p className="mt-2 text-lg">
-          You can return to the home page using the button below.
-        </p>
-        <Link to="/" className="mt-4 text-blue-500 hover:text-blue-300">
-          Back to Home
-        </Link>
-      </form>
-      <form className="flex flex-col items-center justify-center py-5 sm:px-6">
-        <h1 className="text-4xl font-bold">Questions:</h1>
+        <h1 className="text-4xl font-bold">Questions :</h1>
         {questions && questions.length > 0 ? (
           <>
             <ul className="pt-5">
@@ -69,9 +72,9 @@ const Questions = () => {
                     />
                   </li>
                   <li className="flex flex-col gap-3">
-                    <label htmlFor={`answer-${index}`}>Answer:</label>
+                    <label htmlFor={`answer-${index}`}>Réponse :</label>
                     <div className="flex gap-2">
-                      <label htmlFor={`true-${index}`}>True</label>
+                      <label htmlFor={`true-${index}`}>Vrai</label>
                       <input
                         type="radio"
                         id={`true-${index}`}
@@ -87,7 +90,7 @@ const Questions = () => {
                       />
                     </div>
                     <div className="flex gap-2">
-                      <label htmlFor={`false-${index}`}>False</label>
+                      <label htmlFor={`false-${index}`}>Faux</label>
                       <input
                         type="radio"
                         id={`false-${index}`}
@@ -110,11 +113,11 @@ const Questions = () => {
               type="submit"
               className="block w-40 px-3 py-2 mt-4 text-base font-medium text-white bg-blue-700 rounded-md border border-blue-700 hover:duration-750 hover:bg-blue-800  focus:ring"
             >
-              Submit
+              Soumettre
             </button>
           </>
         ) : (
-          <p>No questions available.</p>
+          <p>Aucune question disponible.</p>
         )}
       </form>
     </>
