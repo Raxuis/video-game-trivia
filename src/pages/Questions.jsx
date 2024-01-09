@@ -2,9 +2,6 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 function convertEntitiesHTML(texte) {
-  const submitButton = (e) => {
-    e.preventDefault();
-  };
   const entitiesHTML = {
     "&quot;": '"',
     "&apos;": "'",

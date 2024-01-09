@@ -4,7 +4,7 @@ const LandingText = () => {
   return (
     <div className="pt-6">
       <h1 className="text-center text-3xl font-bold">
-        Bienvenue sur le Quiz sur les Jeux Vidéo créé par
+        Welcome to the Video Game Quiz made by
         <br />
         <a
           href="https://github.com/Raxuis"

@@ -34,7 +34,7 @@ const Form = () => {
         onSubmit={(e) => submitButton(e)}
       >
         <label htmlFor="amount" name="amount">
-          Choisissez combien de questions vous souhaitez :
+          Choose how many questions you want :
         </label>
         <select
           name="amount"
@@ -48,7 +48,7 @@ const Form = () => {
             </option>
           ))}
         </select>
-        <label htmlFor="difficulty">Sélectionnez votre difficulté :</label>
+        <label htmlFor="difficulty">Select your difficulty :</label>
         <select
           name="difficulty"
           id="difficulty"
@@ -59,15 +59,15 @@ const Form = () => {
             key={"any"}
             value={
               Math.random() < 0.33
-                ? "facile"
+                ? "easy"
                 : Math.random() < 0.66
-                ? "moyen"
-                : "difficile"
+                ? "medium"
+                : "hard"
             }
           >
-            N'importe quelle difficulté
+            Any difficulty
           </option>
-          {["facile", "moyen", "difficile"].map((value) => (
+          {["easy", "medium", "hard"].map((value) => (
             <option key={value} value={value}>
               {value.charAt(0).toUpperCase() + value.slice(1)}
             </option>
@@ -77,7 +77,7 @@ const Form = () => {
           type="submit"
           className="block w-full px-3 py-2 mt-4 text-base font-medium text-white bg-blue-700 rounded-md border border-blue-700 hover:duration-750 hover:bg-blue-800  focus:ring"
         >
-          Valider
+          Submit
         </button>
       </form>
     </div>
