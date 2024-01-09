@@ -1,30 +1,31 @@
 import React from "react";
-import LandingText from "./LandingText";
+import LandingText from "../components/LandingText";
 import axios from "axios";
-
-function submitButton(event, amount, difficulty, setQuestions, questions) {
-  event.preventDefault();
-  const url = `https://opentdb.com/api.php?amount=${amount}&category=15&difficulty=${difficulty}&type=boolean`;
-  axios
-    .get(url)
-    .then((response) => {
-      questions = response.data.results;
-      setQuestions(questions);
-      console.log(questions);
-    })
-
-    .catch((error) => {
-      console.error("Error fetching questions:", error);
-    });
-}
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [amount, setAmount] = React.useState(5);
   const [difficulty, setDifficulty] = React.useState("");
   const [questions, setQuestions] = React.useState([]);
+  const navigate = useNavigate();
 
   const handleChange = (setStateFunc, value) => {
     setStateFunc(value || "facile");
+  };
+
+  const submitButton = async (event) => {
+    event.preventDefault();
+    const url = `https://opentdb.com/api.php?amount=${amount}&category=15&difficulty=${difficulty}&type=boolean`;
+
+    try {
+      const response = await axios.get(url);
+      const newQuestions = response.data.results;
+      setQuestions(newQuestions);
+      console.log(newQuestions);
+      navigate("/questions");
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+    }
   };
 
   return (
@@ -32,9 +33,7 @@ const Form = () => {
       <LandingText />
       <form
         className="flex items-center flex-col p-10 gap-3"
-        onSubmit={(e) => {
-          submitButton(e, amount, difficulty, setQuestions, questions);
-        }}
+        onSubmit={(e) => submitButton(e)}
       >
         <label htmlFor="amount" name="amount">
           Choisissez combien de questions vous souhaitez :
