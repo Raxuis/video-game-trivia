@@ -26,7 +26,7 @@
 
 ## :dart: About
 
-Video game trivia is a simple project that I made to practice my React and React Native skills.
+Video game trivia is a simple project that I made to practice my React skills.
 
 ## :sparkles: Features
 
@@ -40,7 +40,6 @@ The following tools were used in this video-game-trivia:
 
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
 
 ## :white_check_mark: Requirements
 
